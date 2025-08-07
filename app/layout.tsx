@@ -35,12 +35,11 @@ export default function RootLayout({
       </head>
 
       <Navbar />
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        
-        {children}
-        <footer className="section-pt overflow-hidden bg-b-neutral-3">
+      <body style={{ backgroundColor: 'black' }}>
+        <main>
+           {children}
+        </main>
+        <footer className="section-pt overflow-hidden bg-b-neutral-3" style={{ backgroundColor: 'black' }}>
             <div className="min-h-screen lg:ml-[240px] lg:mr-[136px]">
   <div className="container relative">
     <div className="relative z-10 lg:mx-60p">
@@ -206,7 +205,7 @@ export default function RootLayout({
         <div className="w-1px h-4 bg-shap mx-3"></div>
         <p className="text-base text-w-neutral-3">
           Designed By
-          <a href="https://themeforest.net/user/uiaxis/portfolio" className="text-primary hover:underline ml-1">
+          <a href="" className="text-primary hover:underline ml-1">
             UIAXIS
           </a>
         </p>
