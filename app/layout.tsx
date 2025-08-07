@@ -28,6 +28,8 @@ export default function RootLayout({
      <html lang="en">
       <head>
         <meta charSet="UTF-8" />
+        <link rel="stylesheet" href="/assets/styles/app.css" />
+        <script defer src="/assets/js/app.js"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="icon" href="/assets/images/icons/favicon.ico" type="image/x-icon" />
         <link rel="stylesheet" href="/assets/styles/app.css" />
