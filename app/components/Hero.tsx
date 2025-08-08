@@ -11,7 +11,7 @@ export default function Hero() {
   return (
     <>
     
-    <div className="min-h-screen lg:ml-[240px] lg:mr-[136px]">
+    <div className="min-h-screen lg:ml-[240px]">
     <section className="section-pt overflow-visible">
       <div className="container relative pt-[30px]">
         <div className="grid grid-cols-12 items-center gap-30p">
@@ -390,7 +390,7 @@ export default function Hero() {
       </div>
        
      </section>
-    <section className="mt-10">
+    <section className="mt-99">
   <div className="container">
     <h3>🎮 Welcome to Retros Game Online – Your Favorite Place to Play Classic Games!</h3>
     <p>
