@@ -15,7 +15,7 @@ interface Props {
   gameKeys: string[];
   gamesData: Record<string, Game>;
   categoryName: string | undefined;
-  onBack: () => void;
+  onBack?: () => void;
   gameKeyMap?: Record<string, string>; // Map game title to key
 }
 

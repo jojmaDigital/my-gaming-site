@@ -1,42 +1,50 @@
-'use client';
-
 import React from 'react';
-import { useRouter, useParams } from 'next/navigation';
 import gamesData from '../../../app/data/games.json';
 import CategoryGamesClient from './CategoryGamesClient';
 
-export default function CategoryGamesPage() {
-  const router = useRouter();
-  const params = useParams();
-  const { categoryName } = params;
+interface Props {
+  params: Promise<{
+    categoryName: string;
+  }>;
+}
 
-  // Handle categoryName being string or string[]
-  const categoryNameStr = Array.isArray(categoryName) ? categoryName[0] : categoryName;
+export async function generateStaticParams() {
+  // Generate static params for all categories (sections + genres)
+  const sectionNames = Object.keys(gamesData.sections);
+  const genreNames = Array.from(
+    new Set(Object.values(gamesData.games).map((game: any) => game.genre.toLowerCase()))
+  );
+
+  const allCategories = [...sectionNames, ...genreNames];
+
+  return allCategories.map((category) => ({
+    categoryName: category.toLowerCase(),
+  }));
+}
+
+export default async function CategoryGamesPage({ params }: Props) {
+  const { categoryName } = await params;
+  const categoryNameStr = categoryName.toLowerCase();
 
   let filteredGameKeys: string[] = [];
 
   if (categoryNameStr) {
-    // Check if categoryName is a section (like "featured", "new", etc.)
-    if ((gamesData.sections as any)[categoryNameStr]) {
-      filteredGameKeys = (gamesData.sections as any)[categoryNameStr] as string[];
+    if (Object.prototype.hasOwnProperty.call(gamesData.sections, categoryNameStr)) {
+      filteredGameKeys = (gamesData.sections as any)[categoryNameStr];
     } else {
-      // Filter games by genre matching categoryName (case insensitive)
       filteredGameKeys = Object.entries(gamesData.games)
-        .filter(([key, game]) => game.genre.toLowerCase() === categoryNameStr.toLowerCase())
+        .filter(([key, game]) => game.genre.toLowerCase() === categoryNameStr)
         .map(([key]) => key);
     }
   }
 
-  const handleBack = () => {
-    router.push('/category');
-  };
+  // Remove handleBack function and onBack prop to avoid passing event handlers to client component
 
   return (
     <CategoryGamesClient
       gameKeys={filteredGameKeys}
       gamesData={gamesData.games}
       categoryName={categoryNameStr}
-      onBack={handleBack}
     />
   );
 }
