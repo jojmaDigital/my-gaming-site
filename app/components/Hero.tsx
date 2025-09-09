@@ -153,7 +153,7 @@ export default function Hero() {
 
       {/* ================== GRILLE DE JEUX ================== */}
       <section  className="mb-6">
-        <h2 className="text-2xl font-bold mb-6">🔥 Popular Games</h2>
+        <h2 className="text-2xl font-bold mb-6">🔥 Popular Online Games</h2>
         {chunkedGames.map((gameRow, rowIndex) => (
           <div key={rowIndex} className="game-row mb-6">
             {gameRow.map((game) => (
