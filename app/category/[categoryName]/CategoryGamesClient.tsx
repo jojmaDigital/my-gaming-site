@@ -16,6 +16,7 @@ interface Props {
   gamesData: Record<string, Game>;
   categoryName: string | undefined;
   onBack: () => void;
+  gameKeyMap?: Record<string, string>; // Map game title to key
 }
 
 export default function CategoryGamesClient({ gameKeys, gamesData, categoryName, onBack }: Props) {
@@ -25,9 +26,9 @@ export default function CategoryGamesClient({ gameKeys, gamesData, categoryName,
     setView(view === 'grid' ? 'list' : 'grid');
   };
 
-  const games = gameKeys
-    .map((key) => gamesData[key])
-    .filter(Boolean);
+  const gamesWithKeys = gameKeys
+    .map((key) => ({ key, game: gamesData[key] }))
+    .filter(({ game }) => game);
 
   return (
     <div className="min-h-screen lg:ml-[240px] bg-black text-white p-6">
@@ -53,10 +54,10 @@ export default function CategoryGamesClient({ gameKeys, gamesData, categoryName,
       {/* Mode Grille style cartes */}
       {view === 'grid' ? (
        <div className="grid grid-cols-6 sm:grid-cols-6 md:grid-cols-6 lg:grid-cols-6 xl:grid-cols-6 gap-6">
-  {games.map((game) => (
+  {gamesWithKeys.map(({ key, game }) => (
     <Link
-      key={game.title}
-      href={`/game?key=${game.title.toLowerCase().replace(/\s+/g, '-')}`}
+      key={key}
+      href={`/game?key=${key}`}
       className="group relative flex flex-col rounded-lg overflow-hidden shadow-md hover:shadow-xl transition bg-gray-800"
     >
       {/* Image */}
@@ -79,10 +80,10 @@ export default function CategoryGamesClient({ gameKeys, gamesData, categoryName,
       ) : (
         /* Mode Liste simple */
         <div className="flex flex-col gap-4">
-          {games.map((game) => (
+          {gamesWithKeys.map(({ key, game }) => (
             <Link
-              key={game.title}
-              href={`/game?key=${game.title.toLowerCase().replace(/\s+/g, '-')}`}
+              key={key}
+              href={`/game?key=${key}`}
               className="flex items-center gap-4 p-4 rounded bg-gray-800 hover:bg-gray-700 transition"
             >
               <img

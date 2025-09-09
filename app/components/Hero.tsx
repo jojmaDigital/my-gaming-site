@@ -57,6 +57,7 @@ export default function Hero() {
                 modules={[Pagination]}
                 pagination={{ clickable: true }}
                 className="one-card-carousel rounded-12"
+                suppressHydrationWarning={true}
               >
                 {featuredGames.map((game, idx) => (
                   <SwiperSlide key={idx}>
@@ -126,6 +127,7 @@ export default function Hero() {
               slidesPerView: 3,
             },
           }}
+          suppressHydrationWarning={true}
         >
           {chunkedHotGames.map((gameGroup, groupIndex) => (
             <SwiperSlide key={groupIndex}>

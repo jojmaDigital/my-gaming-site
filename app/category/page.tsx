@@ -33,17 +33,16 @@ export default function CategoriesPage() {
         <section key={sectionName} className="mb-10">
           <h2 className="text-2xl font-semibold mb-4 capitalize">{sectionName}</h2>
           <div className={view === 'grid' ? 'grid grid-cols-3 gap-6' : 'flex flex-col gap-4'}>
-            {gameKeys.map((gameKey: string) => {
+            {gameKeys.slice(0, 3).map((gameKey: string) => {
               const game = (gamesData.games as any)[gameKey] as Game;
               if (!game) return null;
               return (
-                <Link
+                <div
                   key={gameKey}
-                  href={`/game?key=${gameKey}`}
                   className={
                     view === 'grid'
-                      ? 'bg-gray-800 rounded p-4 hover:bg-gray-700 cursor-pointer'
-                      : 'bg-gray-800 rounded p-4 flex items-center gap-4 hover:bg-gray-700 cursor-pointer'
+                      ? 'bg-gray-800 rounded p-4'
+                      : 'bg-gray-800 rounded p-4 flex items-center gap-4'
                   }
                 >
                   <img
@@ -55,9 +54,19 @@ export default function CategoriesPage() {
                     <h3 className="text-lg font-bold">{game.title}</h3>
                     {view === 'list' && <p className="text-gray-400">{game.genre}</p>}
                   </div>
-                </Link>
+                </div>
               );
             })}
+            <Link
+              href={`/category/${sectionName}`}
+              className={
+                view === 'grid'
+                  ? 'bg-blue-600 rounded p-4 hover:bg-blue-700 cursor-pointer text-center flex items-center justify-center'
+                  : 'bg-blue-600 rounded p-4 flex items-center justify-center hover:bg-blue-700 cursor-pointer'
+              }
+            >
+              <span className="text-white font-bold">Voir plus ({gameKeys.length})</span>
+            </Link>
           </div>
         </section>
       ))}

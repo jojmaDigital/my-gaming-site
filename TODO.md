@@ -1,4 +1,4 @@
-# TODO: Create Games List Page and Fix Categories Page
+# TODO: Create Games List Page and Category Pages
 
 ## Tasks
 - [x] Create app/games/page.tsx with games list functionality
@@ -6,9 +6,8 @@
 - [x] Implement grid/list view toggle
 - [x] Add links to individual game pages
 - [x] Style with dark theme and Tailwind CSS
-- [x] Fix app/category/page.tsx to use sections from games.json
-- [x] Update Game interface to match JSON structure
-- [x] Link games to /game?key=gameKey
-- [ ] Test the games page by navigating to /games
-- [ ] Test the category page by navigating to /category
-- [ ] Verify navigation to game pages works
+- [x] Fix category page to show sections with previews and "Voir plus" links
+- [x] Update dynamic category page to handle sections and genres
+- [x] Fix links to use correct game keys
+- [x] Test the pages by running dev server
+- [x] Verify navigation between pages works

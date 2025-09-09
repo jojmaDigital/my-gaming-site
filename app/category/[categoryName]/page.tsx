@@ -13,10 +13,19 @@ export default function CategoryGamesPage() {
   // Handle categoryName being string or string[]
   const categoryNameStr = Array.isArray(categoryName) ? categoryName[0] : categoryName;
 
-  // Filter games by genre matching categoryName (case insensitive)
-  const filteredGameKeys = Object.entries(gamesData.games)
-    .filter(([key, game]) => game.genre.toLowerCase() === categoryNameStr?.toLowerCase())
-    .map(([key]) => key);
+  let filteredGameKeys: string[] = [];
+
+  if (categoryNameStr) {
+    // Check if categoryName is a section (like "featured", "new", etc.)
+    if ((gamesData.sections as any)[categoryNameStr]) {
+      filteredGameKeys = (gamesData.sections as any)[categoryNameStr] as string[];
+    } else {
+      // Filter games by genre matching categoryName (case insensitive)
+      filteredGameKeys = Object.entries(gamesData.games)
+        .filter(([key, game]) => game.genre.toLowerCase() === categoryNameStr.toLowerCase())
+        .map(([key]) => key);
+    }
+  }
 
   const handleBack = () => {
     router.push('/category');
