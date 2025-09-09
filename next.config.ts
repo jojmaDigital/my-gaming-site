@@ -1,7 +1,7 @@
 import type { NextConfig } from 'next'
 
 const nextConfig: NextConfig = {
-  output: 'export',
+  // output: 'export', // Removed to allow dynamic routes
   trailingSlash: true, // recommandé pour éviter les 404
 };
 
