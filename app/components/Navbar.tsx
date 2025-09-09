@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
+import { useSession, signIn, signOut } from 'next-auth/react'
 
 export default function Header() {
   return (
@@ -129,99 +130,84 @@ export default function Header() {
                       <i className="ti ti-chevron-down !text-b-neutral-4"></i>
                     </span>
                   </span>
-                  <ul className="grid gap-y-2 px-16p">
-                    <li className="pt-2"><Link className="text-base hover:text-primary transition-1" href="/">- Home One</Link></li>
-                    <li><Link className="text-base hover:text-primary transition-1" href="/home-two">- Home Two</Link></li>
-                    <li><Link className="text-base hover:text-primary transition-1" href="/home-three">- Home Three</Link></li>
-                    <li><Link className="text-base hover:text-primary transition-1" href="/home-four">- Home Four</Link></li>
-                  </ul>
+                 
                 </li>
-                <li>
-                  <Link href="/tournaments" className="flex-y gap-3 px-3 py-16p hover:bg-primary text-l-regular text-w-neutral-1 hover:text-b-neutral-4 rounded-12 justify-normal w-full transition-1">
-                    <span className="icon-28">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-device-gamepad-2">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                        <path d="M12 5h3.5a5 5 0 0 1 0 10h-5.5l-4.015 4.227a2.3 2.3 0 0 1 -3.923 -2.035l1.634 -8.173a5 5 0 0 1 4.904 -4.019h3.4z" />
-                        <path d="M14 15l4.07 4.284a2.3 2.3 0 0 0 3.925 -2.023l-1.6 -8.232" />
-                        <path d="M8 9v2" />
-                        <path d="M7 10h2" />
-                        <path d="M14 10h2" />
-                      </svg>
-                    </span> Tournaments
-                  </Link>
-                </li>
-                 <li>
-                                <a href="./leaderboard.html" className="flex-y gap-3 px-3 py-16p hover:bg-primary text-l-regular text-w-neutral-1 hover:text-b-neutral-4 rounded-12 justify-normal w-full transition-1">
-                                <span className="icon-28">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24"
-                                        fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        className="icon icon-tabler icons-tabler-outline icon-tabler-trophy">
-                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                        <path d="M8 21l8 0" />
-                                        <path d="M12 17l0 4" />
-                                        <path d="M7 4l10 0" />
-                                        <path d="M17 4v8a5 5 0 0 1 -10 0v-8" />
-                                        <path d="M5 9m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
-                                        <path d="M19 9m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
-                                    </svg>
-                                </span>
-                                Leaderboards
-                            </a>
-                            </li>
+                
               </ul>
             </div>
+            
+
+            {/* New Categories Section */}
             <div className="pt-20p">
-                        <span className="text-s-medium text-w-neutral-1 mb-20p">
-                        Navigate
-                    </span>
-                        <ul className="grid grid-cols-1 gap-y-3">
-                            <li>
-                                <a href="./user-achievements.html" className="flex-y gap-3 px-3 py-16p hover:bg-primary text-l-regular text-w-neutral-1 hover:text-b-neutral-4 rounded-12 justify-normal w-full transition-1">
-                                <span className="icon-28">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24"
-                                        fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        className="icon icon-tabler icons-tabler-outline icon-tabler-flame">
-                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                        <path
-                                            d="M12 10.941c2.333 -3.308 .167 -7.823 -1 -8.941c0 3.395 -2.235 5.299 -3.667 6.706c-1.43 1.408 -2.333 3.621 -2.333 5.588c0 3.704 3.134 6.706 7 6.706s7 -3.002 7 -6.706c0 -1.712 -1.232 -4.403 -2.333 -5.588c-2.084 3.353 -3.257 3.353 -4.667 2.235" />
-                                    </svg>
-                                </span>
-                                Rewards
-                            </a>
-                            </li>
-                            <li>
-                                <a href="./marketplace-two.html" className="flex-y gap-3 px-3 py-16p hover:bg-primary text-l-regular text-w-neutral-1 hover:text-b-neutral-4 rounded-12 justify-normal w-full transition-1">
-                                <span className="icon-28">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24"
-                                        fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        className="icon icon-tabler icons-tabler-outline icon-tabler-diamond">
-                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                        <path d="M6 5h12l3 5l-8.5 9.5a.7 .7 0 0 1 -1 0l-8.5 -9.5l3 -5" />
-                                        <path d="M10 12l-2 -2.2l.6 -1" />
-                                    </svg>
-                                </span>
-                                Marketplace
-                            </a>
-                            </li>
-                            <li>
-                                <a href="./library.html" className="flex-y gap-3 px-3 py-16p hover:bg-primary text-l-regular text-w-neutral-1 hover:text-b-neutral-4 rounded-12 justify-normal w-full transition-1">
-                                <span className="icon-28">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24"
-                                        fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        className="icon icon-tabler icons-tabler-outline icon-tabler-bookmark">
-                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                        <path d="M18 7v14l-6 -4l-6 4v-14a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4z" />
-                                    </svg>
-                                </span>
-                                My Library
-                            </a>
-                            </li>
-                        </ul>
-                    </div>
+              <span className="text-s-medium text-w-neutral-1 mb-20p">Catégories</span>
+              <ul className="grid grid-cols-1 gap-y-3">
+                <li>
+                  <a href="/category/2-joueurs" className="flex-y gap-3 px-3 py-16p hover:bg-primary text-l-regular text-w-neutral-1 hover:text-b-neutral-4 rounded-12 justify-normal w-full transition-1">
+                    <span className="icon-28">👥</span> 2 Joueurs
+                  </a>
+                </li>
+                <li>
+                  <a href="/category/action" className="flex-y gap-3 px-3 py-16p hover:bg-primary text-l-regular text-w-neutral-1 hover:text-b-neutral-4 rounded-12 justify-normal w-full transition-1">
+                    <span className="icon-28">⚔️</span> Action
+                  </a>
+                </li>
+                <li>
+                  <a href="/category/aventure" className="flex-y gap-3 px-3 py-16p hover:bg-primary text-l-regular text-w-neutral-1 hover:text-b-neutral-4 rounded-12 justify-normal w-full transition-1">
+                    <span className="icon-28">⏰</span> Aventure
+                  </a>
+                </li>
+                <li>
+                  <a href="/category/sport" className="flex-y gap-3 px-3 py-16p hover:bg-primary text-l-regular text-w-neutral-1 hover:text-b-neutral-4 rounded-12 justify-normal w-full transition-1">
+                    <span className="icon-28">🥇</span> Sport
+                  </a>
+                </li>
+                <li>
+                  <a href="/category/conduite" className="flex-y gap-3 px-3 py-16p hover:bg-primary text-l-regular text-w-neutral-1 hover:text-b-neutral-4 rounded-12 justify-normal w-full transition-1">
+                    <span className="icon-28">🚗</span> Conduite
+                  </a>
+                </li>
+                <li>
+                  <a href="/category/arcade" className="flex-y gap-3 px-3 py-16p hover:bg-primary text-l-regular text-w-neutral-1 hover:text-b-neutral-4 rounded-12 justify-normal w-full transition-1">
+                    <span className="icon-28">🎰</span> Arcade
+                  </a>
+                </li>
+                <li>
+                  <a href="/category/casse-tete" className="flex-y gap-3 px-3 py-16p hover:bg-primary text-l-regular text-w-neutral-1 hover:text-b-neutral-4 rounded-12 justify-normal w-full transition-1">
+                    <span className="icon-28">🧩</span> Casse-tête
+                  </a>
+                </li>
+                <li>
+                  <a href="/category/tir" className="flex-y gap-3 px-3 py-16p hover:bg-primary text-l-regular text-w-neutral-1 hover:text-b-neutral-4 rounded-12 justify-normal w-full transition-1">
+                    <span className="icon-28">🎯</span> Tir
+                  </a>
+                </li>
+                <li>
+                  <a href="/category/reflexion" className="flex-y gap-3 px-3 py-16p hover:bg-primary text-l-regular text-w-neutral-1 hover:text-b-neutral-4 rounded-12 justify-normal w-full transition-1">
+                    <span className="icon-28">🧠</span> Réflexion
+                  </a>
+                </li>
+                <li>
+                  <a href="/category/plateforme" className="flex-y gap-3 px-3 py-16p hover:bg-primary text-l-regular text-w-neutral-1 hover:text-b-neutral-4 rounded-12 justify-normal w-full transition-1">
+                    <span className="icon-28">🎮</span> Plateforme
+                  </a>
+                </li>
+                <li>
+                  <a href="/category/strategie" className="flex-y gap-3 px-3 py-16p hover:bg-primary text-l-regular text-w-neutral-1 hover:text-b-neutral-4 rounded-12 justify-normal w-full transition-1">
+                    <span className="icon-28">🧙‍♂️</span> Stratégie
+                  </a>
+                </li>
+                <li>
+                  <a href="/category/rpg" className="flex-y gap-3 px-3 py-16p hover:bg-primary text-l-regular text-w-neutral-1 hover:text-b-neutral-4 rounded-12 justify-normal w-full transition-1">
+                    <span className="icon-28">📖</span> RPG
+                  </a>
+                </li>
+                <li>
+                  <a href="/category/physique" className="flex-y gap-3 px-3 py-16p hover:bg-primary text-l-regular text-w-neutral-1 hover:text-b-neutral-4 rounded-12 justify-normal w-full transition-1">
+                    <span className="icon-28">🧪</span> Physique
+                  </a>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
